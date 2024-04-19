@@ -1,10 +1,18 @@
+import GetSession from '@/components/getSession'
 import { SignOut } from '@/components/sign-out'
+import Image from 'next/image'
 import React from 'react'
 
-const ProtectedPage = () => {
+const ProtectedPage = async() => {
+  const session = await GetSession()
+  console.log("the session is",session)
   return (
-    <main>
+    <main className='flex flex-col justify-center items-center min-h-screen gap-5'>
       <div>Protected Page</div>
+      <div className='border border-slate-950 w-60'></div>
+      <Image className='rounded-full' src={session?.user?.image as string} alt="Avatar" width={180} height={37} priority />
+      <p>{session?.user?.name}</p>
+      <p>{session?.user?.email}</p>
       <SignOut />
     </main>
   )

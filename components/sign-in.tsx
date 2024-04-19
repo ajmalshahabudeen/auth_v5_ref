@@ -4,6 +4,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
+
 export function GithubSignIn() {
   return (
     <form
@@ -19,6 +20,7 @@ export function GithubSignIn() {
     </form>
   );
 }
+
 
 export function GoogleSignIn() {
   return (
@@ -46,7 +48,11 @@ export function CredentialSignIn() {
       className="flex flex-col gap-5 text-left"
       action={async (formData) => {
         "use server";
-        await signIn("credentials", formData);
+        await signIn("credentials", formData).then((response) => {
+          console.log("the response is",response);
+        }).catch((error) => {
+          console.log("the error is 007",error);
+        });
       }}
     >
       <Input name="email" type="email" placeholder="Email" required />
