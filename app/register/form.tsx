@@ -24,6 +24,7 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(true);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -95,9 +96,12 @@ export const RegisterForm = () => {
           type="password"
           placeholder="Confirm Password"
           required
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value)
+            setConfirmPasswordError(e.target.value === password)}}
         />
-        <Button className="inline-flex gap-4 px-6 py-3 w-full" type="submit" disabled={loading}>
+        {!confirmPasswordError && <p className="text-red-500">Passwords do not match</p>}
+        <Button className="inline-flex gap-4 px-6 py-3 w-full" type="submit" disabled={loading || !confirmPasswordError}>
           {loading ? "Creating Account..." : "Create Account"}
           <MdKeyboardArrowRight size={26} />
         </Button>
