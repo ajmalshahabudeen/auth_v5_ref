@@ -9,6 +9,6 @@ export async function GoogleSignIn() {
     await signIn("google");
 }
 
-export async function CredentialSignIn() {
-    await signIn("credentials", { email: "X9LQI@example.com", password: "password" });
+export async function CredentialSignIn(email:string, password:string) {
+    await signIn("credentials", { email, password});
 }

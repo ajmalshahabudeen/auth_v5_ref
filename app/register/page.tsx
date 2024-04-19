@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { CredentialForm } from "./form";
+import { RegisterForm } from "./form";
 
 const LoginPage = () => {
   const route = useRouter();
@@ -34,18 +34,18 @@ const LoginPage = () => {
   });
 
   return (
-    <main className="flex gap-5 justify-center items-center min-h-screen ">
+    <main className="flex gap-5 justify-center items-center min-h-screen w-full">
       <section className="flex flex-col gap-5 text-center border-2 border-slate-950 rounded-2xl p-10 w-4/12">
-        <p className="text-2xl">Sign In</p>
+        <p className="text-2xl">Account Creation</p>
         <Separator className="border-slate-950 border my-5" />
-        <CredentialForm />
+        <RegisterForm />
         <Button
           className="inline-flex gap-4 px-6 py-3 w-full"
           type="button"
           onClick={handleSignInGithub}
         >
           <FaGithub />
-          <p>Sign in with GitHub</p>
+          <p>Sign up with GitHub</p>
         </Button>
         <Button
           variant={"outline"}
@@ -54,7 +54,7 @@ const LoginPage = () => {
           onClick={handleSignInGoogle}
         >
           <FaGoogle />
-          <p>Sign in with Google</p>
+          <p>Sign up with Google</p>
         </Button>
       </section>
     </main>
