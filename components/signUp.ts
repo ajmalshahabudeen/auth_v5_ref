@@ -1,5 +1,6 @@
 "use server";
 
+import bcrypt from 'bcrypt';
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 
@@ -18,11 +19,17 @@ export const Register = async(data: any) => {
     if (checkUserExists) {
       return { message: "User already exists", status: 400 };
     }
+
+    const saltRounds = 10;
+    const myPlaintextPassword = password;
+
+    const hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+
     await prisma.user.create({
       data: {
         name: username,
         email,
-        password,
+        password: hash,
       },
     });
   return { message: "success", status: 200 };
