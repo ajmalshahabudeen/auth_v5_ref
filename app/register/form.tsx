@@ -89,13 +89,17 @@ export const RegisterForm = () => {
           type="password"
           placeholder="Password"
           required
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword('')
+            setPassword(e.target.value)
+          }}
         />
         <Input
           name="confirm-password"
           type="password"
           placeholder="Confirm Password"
           required
+          value={confirmPassword}
           onChange={(e) => {
             setConfirmPassword(e.target.value)
             setConfirmPasswordError(e.target.value === password)}}
