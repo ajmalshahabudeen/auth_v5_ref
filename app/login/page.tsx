@@ -1,7 +1,6 @@
 "use client";
 import GetSession from "@/components/getSession";
 import {
-  CredentialSignIn,
   GithubSignIn,
   GoogleSignIn,
 } from "@/components/signIn";
