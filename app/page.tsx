@@ -1,14 +1,24 @@
-import Link from 'next/link'
-import React from 'react'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import React from "react";
 
 const Home = () => {
   return (
-    <div className='flex flex-col gap-5 p-10'>
-      <div>Home</div>
-      <Link href={'/login'}>Login -&gt;</Link>
-      <Link href={'/register'}>Register -&gt;</Link>
+    <div className="flex flex-col items-center min-h-screen justify-center gap-5 p-10">
+      <div className="text-center my-10">
+        <p className="text-3xl font-extrabold">Auth.js Framework</p>
+      </div>
+      <Button asChild variant={"link"}>
+        <Link href={"/login"}>Protected Page -&gt;</Link>
+      </Button>
+      <Button asChild variant={"link"}>
+        <Link href={"/login"}>Login -&gt;</Link>
+      </Button>
+      <Button asChild variant={"link"}>
+        <Link href={"/register"}>Register -&gt;</Link>
+      </Button>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
