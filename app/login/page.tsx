@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { CredentialForm } from "./form";
+import Link from "next/link";
 
 const LoginPage = () => {
   const route = useRouter();
@@ -55,6 +56,9 @@ const LoginPage = () => {
         >
           <FaGoogle />
           <p>Sign in with Google</p>
+        </Button>
+        <Button className="inline-flex gap-4 px-6 py-3 w-full" variant={"link"} asChild>
+          <Link href="/register">Create an account -&gt;</Link>
         </Button>
       </section>
     </main>

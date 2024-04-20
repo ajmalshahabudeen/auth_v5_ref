@@ -45,7 +45,7 @@ export const CredentialForm = () => {
           placeholder="Password"
           required
         />
-        <Button className="inline-flex gap-4 px-6 py-3 w-full" type="submit" disabled={loading}>
+        <Button variant={"secondary"} className="inline-flex gap-4 px-6 py-3 w-full border border-slate-800" type="submit" disabled={loading}>
           <FaKey />
           {loading ? "Signing in..." : "Sign in with Credentials"}
         </Button>

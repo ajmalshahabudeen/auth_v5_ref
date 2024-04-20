@@ -105,7 +105,7 @@ export const RegisterForm = () => {
             setConfirmPasswordError(e.target.value === password)}}
         />
         {!confirmPasswordError && <p className="text-red-500">Passwords do not match</p>}
-        <Button className="inline-flex gap-4 px-6 py-3 w-full" type="submit" disabled={loading || !confirmPasswordError}>
+        <Button variant={"secondary"} className="inline-flex gap-4 px-6 py-3 w-full border border-slate-800" type="submit" disabled={loading || !confirmPasswordError}>
           {loading ? "Creating Account..." : "Create Account"}
           <MdKeyboardArrowRight size={26} />
         </Button>
