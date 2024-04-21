@@ -36,7 +36,7 @@ const LoginPage = () => {
 
   return (
     <main className="flex gap-5 justify-center items-center min-h-screen w-full">
-      <section className="flex flex-col gap-5 text-center border-2 border-slate-950 rounded-2xl p-10 w-4/12">
+      <section className="flex flex-col gap-5 text-center border-2 border-slate-950 rounded-2xl p-5 md:p-10 w-full m-2 md:w-4/12">
         <p className="text-2xl">Account Creation</p>
         <Separator className="border-slate-950 border my-5" />
         <RegisterForm />

@@ -11,6 +11,7 @@ import {
 } from "@/lib/prismaData";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 const ProtectedPage = () => {
   const [password, setPassword] = useState("");
@@ -43,7 +44,7 @@ const ProtectedPage = () => {
     await userData?.emailVerified;
   }
 
-  async function handleUpdatePassword(e:any) {
+  async function handleUpdatePassword(e: any) {
     e.preventDefault();
     await UpdatePassword(password).then(() => {
       setPassword("");
@@ -53,8 +54,8 @@ const ProtectedPage = () => {
   }
 
   return (
-    <main className="flex flex-row min-h-screen gap-5">
-      <section className="flex flex-col gap-5 w-3/12 items-center mt-20">
+    <main className="flex flex-col md:flex-row min-h-screen gap-5">
+      <section className="flex flex-col gap-5 md:w-3/12 items-center mt-20">
         <div>Protected Page</div>
         <div className="border border-slate-950 w-60"></div>
         <Image
@@ -71,12 +72,18 @@ const ProtectedPage = () => {
       </section>
       <div className="border border-slate-950"></div>
       <section className="mt-20">
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-        <pre>{JSON.stringify(userData, null, 2)}</pre>
-        <div className="inline-flex gap-3 pt-10 items-center">
+        {!isMobile ?
+          <div>
+            <pre>{JSON.stringify(session, null, 2)}</pre>
+            <pre>{JSON.stringify(userData, null, 2)}</pre>
+          </div>
+          :
+          <p className="text-center text-red-500">View In Desktop to See more Details</p>
+        }
+        <div className="inline-flex gap-3 pt-10 items-center p-2">
           <p>Email: {userData?.email} </p>
           {userData?.emailVerified ? (
-            "Verified"
+            (<p className="text-green-500">Verified</p>)
           ) : (
             <Button onClick={handleVerifyEmail}>Verify Now</Button>
           )}
@@ -84,7 +91,7 @@ const ProtectedPage = () => {
         <div>
           <form
             onSubmit={handleUpdatePassword}
-            className="inline-flex gap-3 pt-10"
+            className="flex flex-col p-2 md:flex-row gap-3 pt-10"
           >
             <Input
               name="password"
@@ -108,22 +115,24 @@ const ProtectedPage = () => {
                 setConfirmPasswordError(e.target.value === password);
               }}
             />
-           
+
             <div>
-            <Button
-              variant={"secondary"}
-              className="inline-flex gap-4 px-6 py-3 w-full border border-slate-800"
-              disabled={!confirmPasswordError}
-            >
-              Update Password
-            </Button>
-            {!confirmPasswordError && (
-              <p className="text-red-500 text-sm text-center">Passwords do not match</p>
-            )}
+              <Button
+                variant={"secondary"}
+                className="inline-flex gap-4 px-6 py-3 w-full border border-slate-800"
+                disabled={!confirmPasswordError}
+              >
+                Update Password
+              </Button>
+              {!confirmPasswordError && (
+                <p className="text-red-500 text-sm text-center">
+                  Passwords do not match
+                </p>
+              )}
             </div>
           </form>
         </div>
-        <div className="inline-flex gap-3 pt-10 items-center">
+        <div className="inline-flex gap-3 pt-10 items-center mb-20 p-2">
           <p className="text-red-700">Dangerous Action Delete User:</p>
           <DeleteUser />
         </div>
