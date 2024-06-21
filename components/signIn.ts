@@ -1,10 +1,7 @@
 "use server";
 import { signIn } from "@/auth";
 import bcrypt from 'bcrypt';
-import { PrismaClient } from '@prisma/client/edge'
-import { withAccelerate } from '@prisma/extension-accelerate'
-
-const prisma = new PrismaClient().$extends(withAccelerate())
+import { prisma } from "@/lib/Prisma";
 export async function GithubSignIn() {
     await signIn("github");
   }

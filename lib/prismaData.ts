@@ -1,10 +1,8 @@
 "use server";
 import GetSession from "@/components/getSession";
-import { PrismaClient } from "@prisma/client/edge";
-import { withAccelerate } from "@prisma/extension-accelerate";
 import bcrypt from "bcrypt";
+import { prisma } from "@/lib/Prisma";
 
-const prisma = new PrismaClient().$extends(withAccelerate());
 
 export const UserDataFromDatabase = async () => {
   const session = await GetSession();

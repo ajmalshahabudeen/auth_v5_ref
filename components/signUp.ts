@@ -1,10 +1,8 @@
 "use server";
 
 import bcrypt from 'bcrypt';
-import { PrismaClient } from "@prisma/client/edge";
-import { withAccelerate } from "@prisma/extension-accelerate";
+import { prisma } from "@/lib/Prisma";
 
-const prisma = new PrismaClient().$extends(withAccelerate());
 
 export const Register = async(data: any) => {
   const { username, email, password, confirmPassword } = data;

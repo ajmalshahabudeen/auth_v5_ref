@@ -3,10 +3,8 @@ import Credentials from "next-auth/providers/credentials";
 import github from "next-auth/providers/github";
 import google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from '@prisma/client/edge'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { prisma } from "@/lib/Prisma";
 
-const prisma = new PrismaClient().$extends(withAccelerate())
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
